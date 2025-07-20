@@ -1,0 +1,34 @@
++---------------------+
+|      Pergunta       |
++---------------------+
+| ID (PK)             |
+| Titulo              |
+| OpcaoVisivel        |
+| VotacaoAtiva        |
++---------------------+
+           |
+           | 1
+           |
+           |
+           | N
++---------------------+
+|   OpcaoResposta     |
++---------------------+
+| ID (PK)             |
+| Titulo              |
+| Descricao           |
+| ImagemURL           |
+| PerguntaID (FK)     |
++---------------------+
+           |
+           | N
+           |
+           | 1
++---------------------+
+|      Voto           |
++---------------------+
+| ID (PK)             |
+| UsuarioID           |
+| OpcaoRespostaID (FK)|
+| PerguntaID (FK)     |
++---------------------+
