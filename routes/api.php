@@ -23,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('questions', QuestionController::class);
-Route::apiResource('answer_options', AnswerOptionController::class);
+Route::apiResource('questions/{id}/answer-options', AnswerOptionController::class);
 Route::apiResource('votes', VoteController::class);

@@ -16,38 +16,50 @@ class QuestionController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        return Question::with('options')->findOrFail($id); 
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request->validate(['title' => 'required']);
-        return Question::create($request->all());
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Question $question)
-    {
-        return $question;
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'show_option_total' => 'boolean',
+            'voting_active' => 'boolean',
+        ]);
+        
+        return Question::create($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        $question->update($request->all());
+        $question = Question::findOrFail($id);
+
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'show_option_total' => 'boolean',
+            'voting_active' => 'boolean',
+        ]);
+
+        $question->update($data);
         return $question;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
-        $question->delete();
+        Question::destroy($id); 
         return response()->noContent();
     }
 }
